@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="fav_moviecollectioncell" id="gTV-IL-0wX" customClass="fav_moviecollectioncell" customModule="Loop_Demo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="182" height="270"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="182" height="270"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u9k-9H-dqJ">
+                        <rect key="frame" x="0.0" y="0.0" width="182" height="270"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="270" id="PYz-CR-cf4"/>
+                            <constraint firstAttribute="width" constant="182" id="XJu-sR-Xyd"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="u9k-9H-dqJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Jsc-Yi-xmC"/>
+                <constraint firstAttribute="trailing" secondItem="u9k-9H-dqJ" secondAttribute="trailing" id="SJv-Rt-86s"/>
+                <constraint firstAttribute="bottom" secondItem="u9k-9H-dqJ" secondAttribute="bottom" id="hZC-Pk-G0O"/>
+                <constraint firstItem="u9k-9H-dqJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="r5g-7K-Y3A"/>
+            </constraints>
+            <size key="customSize" width="182" height="272"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                    <real key="value" value="3"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="12"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="Moiveposterimg" destination="u9k-9H-dqJ" id="hHv-S6-57U"/>
+            </connections>
+            <point key="canvasLocation" x="42.028985507246382" y="178.125"/>
+        </collectionViewCell>
+    </objects>
+</document>
