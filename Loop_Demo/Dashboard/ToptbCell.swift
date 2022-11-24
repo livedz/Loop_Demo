@@ -17,7 +17,7 @@ class ToptbCell: UITableViewCell, seeallbtnDelegate {
 
     @IBOutlet weak var Searchbtn: UIButton!
     @IBOutlet weak var Fav_movieCollectionview: UICollectionView!
-//    var flowLayout = UICollectionViewFlowLayout()
+    var flowLayout = UICollectionViewFlowLayout()
    
     var Fav_Movieslist = [Moives]()
     var observer : TopviewDelegate?
@@ -32,16 +32,20 @@ class ToptbCell: UITableViewCell, seeallbtnDelegate {
         
         self.loadFav_movieslist()
         
-//        self.flowLayout.scrollDirection = .horizontal
+         self.flowLayout.scrollDirection = .horizontal
 //        self.flowLayout.sectionFootersPinToVisibleBounds = true
 //
-//        self.Fav_movieCollectionview.collectionViewLayout =  flowLayout
+//
 //
         self.Fav_movieCollectionview.register(UINib(nibName: "fav_moviecollectioncell", bundle: nil)
                                             , forCellWithReuseIdentifier: "fav_moviecollectioncell")
        
         self.Fav_movieCollectionview.register(UINib(nibName: "Footerbtnview", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "Footerbtnview")
-
+     //   flowLayout.minimumInteritemSpacing = 20
+        flowLayout.minimumLineSpacing = 25
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 20)
+        
+        self.Fav_movieCollectionview.collectionViewLayout =  flowLayout
     }
     private func createFlexibleFlowLayout(in view: UIView) -> UICollectionViewFlowLayout {
             let width = view.bounds.width

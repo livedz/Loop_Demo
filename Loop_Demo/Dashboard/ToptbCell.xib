@@ -38,8 +38,8 @@
                         <color key="textColor" red="0.078431372550000003" green="0.10980392160000001" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="dzE-9o-meH">
-                        <rect key="frame" x="0.0" y="254" width="320" height="212"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="dzE-9o-meH">
+                        <rect key="frame" x="0.0" y="261" width="320" height="205"/>
                     </imageView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TSQ-sh-2Nh" userLabel="fav_moviecollection">
                         <rect key="frame" x="0.0" y="162" width="320" height="280"/>
@@ -47,7 +47,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="280" id="yt1-0y-jfE"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="V4Y-xC-Syf">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="13" minimumInteritemSpacing="25" id="V4Y-xC-Syf">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="150" height="270"/>
@@ -77,7 +77,7 @@
                     <constraint firstItem="TSQ-sh-2Nh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="aUN-al-Mbt"/>
                     <constraint firstItem="sXv-xc-YRn" firstAttribute="leading" secondItem="5KL-Ut-1LS" secondAttribute="leading" id="bFe-mG-LmI"/>
                     <constraint firstItem="laJ-gF-ErE" firstAttribute="centerY" secondItem="5KL-Ut-1LS" secondAttribute="centerY" id="e5h-ta-G2P"/>
-                    <constraint firstItem="dzE-9o-meH" firstAttribute="top" secondItem="5KL-Ut-1LS" secondAttribute="bottom" constant="111" id="eKH-ro-eDp"/>
+                    <constraint firstItem="dzE-9o-meH" firstAttribute="top" secondItem="5KL-Ut-1LS" secondAttribute="bottom" constant="118" id="eKH-ro-eDp"/>
                     <constraint firstItem="TSQ-sh-2Nh" firstAttribute="top" secondItem="5KL-Ut-1LS" secondAttribute="bottom" constant="19" id="q7A-05-IHK"/>
                     <constraint firstItem="5KL-Ut-1LS" firstAttribute="top" secondItem="sXv-xc-YRn" secondAttribute="bottom" constant="35" id="yIt-ZP-V3P"/>
                     <constraint firstItem="laJ-gF-ErE" firstAttribute="leading" secondItem="5KL-Ut-1LS" secondAttribute="trailing" id="zAb-43-Trj"/>

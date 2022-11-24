@@ -23,7 +23,9 @@ class starCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var Thirdstarimg: UIImageView!
     
     
+    @IBOutlet weak var stackviewWidthcontraint: NSLayoutConstraint!
     
+  
     func  UpdateStarStackview(count : Int)  {
         
      
@@ -34,6 +36,7 @@ class starCollectionViewCell: UICollectionViewCell {
             self.Thirdstarwidth.constant = 14.0
             self.Fourthdstarwidth.constant = 14.0
             self.Fifthstarwidth.constant = 14.0
+            self.stackviewWidthcontraint.constant = 78
             return
         case 4:
             self.Firststarwidth.constant = 14.0
@@ -41,6 +44,7 @@ class starCollectionViewCell: UICollectionViewCell {
             self.Thirdstarwidth.constant = 0
             self.Fourthdstarwidth.constant = 14.0
             self.Fifthstarwidth.constant = 14.0
+            self.stackviewWidthcontraint.constant = 78 - 14.0
             return
         case 3:
             self.Firststarwidth.constant = 0
@@ -48,6 +52,7 @@ class starCollectionViewCell: UICollectionViewCell {
             self.Thirdstarwidth.constant = 14.0
             self.Fourthdstarwidth.constant =  14.0
             self.Fifthstarwidth.constant = 0
+            self.stackviewWidthcontraint.constant = 78 - 20
             return
         case 2:
             self.Firststarwidth.constant = 0
@@ -55,6 +60,7 @@ class starCollectionViewCell: UICollectionViewCell {
             self.Thirdstarwidth.constant = 0
             self.Fourthdstarwidth.constant = 14.0
             self.Fifthstarwidth.constant = 0
+            self.stackviewWidthcontraint.constant = 78 - 32
             return
         default:
             self.Firststarwidth.constant = 0
@@ -62,6 +68,7 @@ class starCollectionViewCell: UICollectionViewCell {
             self.Thirdstarwidth.constant = 14.0
             self.Fourthdstarwidth.constant = 0
             self.Fifthstarwidth.constant = 0
+            self.stackviewWidthcontraint.constant = 78 - 35
             return
         }
     }

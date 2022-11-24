@@ -15,8 +15,15 @@ class Fav_MoviesVC: UIViewController {
     var Fav_Movieslist = [Moives]()
     var tempFilterlist = [Moives]()
     var MAxstar = 5
-    
+    public var bookmark_favMovielist = [Moives]()
     @IBOutlet weak var searchtxt: UITextField!
+    
+    @IBOutlet weak var collectionLayout: UICollectionViewFlowLayout!{
+        didSet {
+            collectionLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,8 +45,7 @@ class Fav_MoviesVC: UIViewController {
             string: "Search all Favorites",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightText]
         )
-        
-        
+       
 
 
     }
@@ -48,6 +54,15 @@ class Fav_MoviesVC: UIViewController {
   
         self.searchtxt.becomeFirstResponder()
         self.loadFav_movieslist()
+        
+        if var MoivesData = self.getbookmarklist() {
+            self.bookmark_favMovielist = MoivesData
+        }
+    }
+    func getbookmarklist() -> [Moives]? {
+        guard let MoviesData = UserDefaults.standard.data(forKey: "SavedMoives") else { return nil }
+        let MoviesArray = try! JSONDecoder().decode([Moives].self, from: MoviesData)
+        return MoviesArray
     }
     
     // MARK: - Navigation
@@ -119,20 +134,22 @@ extension Fav_MoviesVC : UICollectionViewDelegate , UICollectionViewDataSource {
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Fav_collectioncell", for: indexPath) as! Fav_collectioncell
+            cell.Observer = self
             cell.Moviedetails = self.tempFilterlist[indexPath.row]
+            if self.bookmark_favMovielist.filter({
+                $0.title == self.tempFilterlist[indexPath.row].title
+            }).count > 0
+            {
+                cell.Bookmarkimgview.isHighlighted = true
+            }
+            else
+            {
+                cell.Bookmarkimgview.isHighlighted = false
+            }
             return cell
         }
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        if collectionView == self.Star_collectionview    {
-//            return CGSize(width: .zero, height: 34)
-//
-//        } else {
-//            return CGSize(width: collectionView.frame.width, height: 145)
-//        }
-//
-//    }
+
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -163,11 +180,54 @@ extension Fav_MoviesVC : UICollectionViewDelegate , UICollectionViewDataSource {
         } else {}
     }
     
+    
+    
 }
 
 
-extension Fav_MoviesVC : UITextFieldDelegate
+extension Fav_MoviesVC : UITextFieldDelegate, Fav_collectioncellDelegate
 {
+    
+    func RemoveFromBookmarklist(Moviedetails: Moives!) {
+        
+        if var MoivesData = self.getbookmarklist() {
+            MoivesData = MoivesData.filter({
+                $0.title != Moviedetails.title
+            })
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(MoivesData){
+                     UserDefaults.standard.set(encoded, forKey: "SavedMoives")
+            }
+        }
+        if var MoivesData = self.getbookmarklist() {
+            self.bookmark_favMovielist = MoivesData
+        }
+    }
+    
+    
+    func Addtobookmarklist(Moviedetails: Moives!) {
+        
+        if var MoivesData = self.getbookmarklist() {
+            MoivesData.append(Moviedetails)
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(MoivesData){
+                     UserDefaults.standard.set(encoded, forKey: "SavedMoives")
+            }
+        }
+        else
+        {
+            var MoivesData = [Moives]()
+            MoivesData.append(Moviedetails)
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(MoivesData){
+                     UserDefaults.standard.set(encoded, forKey: "SavedMoives")
+            }
+        }
+        if var MoivesData = self.getbookmarklist() {
+            self.bookmark_favMovielist = MoivesData
+        }
+    }
+    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         
         if textField.text != ""
@@ -183,20 +243,6 @@ extension Fav_MoviesVC : UITextFieldDelegate
        self.Fav_moviesCollectionview.reloadData()
           
      }
-    
-    
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        if textField.text != ""
-//       {
-//            self.tempFilterlist = self.Fav_Movieslist.filter({
-//                $0.title!.hasPrefix(textField.text!)
-//           })
-//       }
-//       else
-//       {
-//           self.tempFilterlist = self.Fav_Movieslist
-//       }
-//       self.Fav_moviesCollectionview.reloadData()
-//    }
+
     
 }

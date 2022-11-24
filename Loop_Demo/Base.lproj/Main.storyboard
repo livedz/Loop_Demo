@@ -96,8 +96,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnV-ws-q6Q">
-                                <rect key="frame" x="28" y="108" width="358" height="48"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bnV-ws-q6Q">
+                                <rect key="frame" x="28" y="108" width="327" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAQ-PX-kHW">
                                         <rect key="frame" x="10" y="14" width="20" height="20"/>
@@ -162,10 +162,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0W2-CV-A1z">
-                                                    <rect key="frame" x="2" y="1" width="104" height="32"/>
+                                                    <rect key="frame" x="7" y="1" width="94" height="32"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="h2p-Qh-nys">
-                                                            <rect key="frame" x="13" y="11.5" width="78" height="9"/>
+                                                            <rect key="frame" x="8" y="11.5" width="78" height="9"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unfillStar" highlightedImage="FilledStar" translatesAutoresizingMaskIntoConstraints="NO" id="bio-Pr-z50">
                                                                     <rect key="frame" x="0.0" y="0.0" width="14" height="9"/>
@@ -198,13 +198,18 @@
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="78" id="Drb-Wa-OgW"/>
+                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="h2p-Qh-nys" firstAttribute="centerX" secondItem="0W2-CV-A1z" secondAttribute="centerX" id="L94-Db-e6K"/>
+                                                        <constraint firstAttribute="trailing" secondItem="h2p-Qh-nys" secondAttribute="trailing" constant="8" id="PPf-gm-8r5"/>
                                                         <constraint firstItem="h2p-Qh-nys" firstAttribute="centerY" secondItem="0W2-CV-A1z" secondAttribute="centerY" id="SBi-Cw-cUS"/>
-                                                        <constraint firstAttribute="width" secondItem="h2p-Qh-nys" secondAttribute="width" multiplier="1.33333" id="dHm-q8-J5o"/>
+                                                        <constraint firstItem="h2p-Qh-nys" firstAttribute="leading" secondItem="0W2-CV-A1z" secondAttribute="leading" constant="8" id="tm6-mu-aPd"/>
+                                                        <constraint firstAttribute="height" constant="32" id="xQj-bK-CKk"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -220,6 +225,7 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="width" secondItem="h2p-Qh-nys" secondAttribute="width" multiplier="1.38462" id="15O-EP-QfZ"/>
                                                 <constraint firstItem="0W2-CV-A1z" firstAttribute="centerX" secondItem="gbx-Th-Gh2" secondAttribute="centerX" id="1c5-xM-7dJ"/>
                                                 <constraint firstItem="0W2-CV-A1z" firstAttribute="top" secondItem="gbx-Th-Gh2" secondAttribute="top" constant="1" id="FEa-9T-q9j"/>
                                                 <constraint firstItem="0W2-CV-A1z" firstAttribute="centerY" secondItem="gbx-Th-Gh2" secondAttribute="centerY" id="cgH-l9-XXr"/>
@@ -243,6 +249,7 @@
                                             <outlet property="Secondstarwidth" destination="DjY-Ft-saP" id="tTQ-3Q-nAx"/>
                                             <outlet property="Thirdstarimg" destination="vBA-eE-0Qj" id="OPS-QU-i2u"/>
                                             <outlet property="Thirdstarwidth" destination="EJi-gf-lRv" id="O4n-bj-Vtk"/>
+                                            <outlet property="stackviewWidthcontraint" destination="Drb-Wa-OgW" id="vYR-fC-r4z"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -366,15 +373,15 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sty-VV-Kgw">
-                                <rect key="frame" x="320.5" y="63" width="77.5" height="12"/>
+                                <rect key="frame" x="364" y="116" width="32" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="12" id="d5h-6D-nZc"/>
+                                    <constraint firstAttribute="width" constant="32" id="Ppn-QO-l3S"/>
+                                    <constraint firstAttribute="height" constant="32" id="d5h-6D-nZc"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Refresh " imagePadding="2">
+                                <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" imagePadding="2">
                                     <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="small"/>
-                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="Refresh_removefiltersAction:" destination="H7T-mb-0eB" eventType="touchUpInside" id="scx-do-G1b"/>
@@ -387,13 +394,13 @@
                             <constraint firstItem="HVl-Ew-Oq6" firstAttribute="trailing" secondItem="Bsv-e0-5DM" secondAttribute="trailing" constant="12" id="3kX-Lg-D86"/>
                             <constraint firstItem="HVl-Ew-Oq6" firstAttribute="bottom" secondItem="TKx-u9-vGd" secondAttribute="bottom" constant="8" id="6m3-Oq-c4h"/>
                             <constraint firstItem="TKx-u9-vGd" firstAttribute="top" secondItem="Bsv-e0-5DM" secondAttribute="bottom" constant="4" id="9RQ-Ur-nsI"/>
-                            <constraint firstItem="HVl-Ew-Oq6" firstAttribute="trailing" secondItem="sty-VV-Kgw" secondAttribute="trailing" constant="16" id="E8P-l3-OX5"/>
-                            <constraint firstItem="sty-VV-Kgw" firstAttribute="top" secondItem="HVl-Ew-Oq6" secondAttribute="top" constant="15" id="FON-qc-ndQ"/>
+                            <constraint firstItem="HVl-Ew-Oq6" firstAttribute="trailing" secondItem="sty-VV-Kgw" secondAttribute="trailing" constant="18" id="E8P-l3-OX5"/>
                             <constraint firstItem="TKx-u9-vGd" firstAttribute="leading" secondItem="HVl-Ew-Oq6" secondAttribute="leading" constant="30" id="ISP-Ty-PuN"/>
-                            <constraint firstItem="HVl-Ew-Oq6" firstAttribute="trailing" secondItem="bnV-ws-q6Q" secondAttribute="trailing" constant="28" id="VxD-oI-ja4"/>
                             <constraint firstItem="bnV-ws-q6Q" firstAttribute="leading" secondItem="HVl-Ew-Oq6" secondAttribute="leading" constant="28" id="cCt-YF-pHW"/>
                             <constraint firstAttribute="trailing" secondItem="TKx-u9-vGd" secondAttribute="trailing" constant="30" id="dDK-wG-fXz"/>
                             <constraint firstItem="Bsv-e0-5DM" firstAttribute="leading" secondItem="HVl-Ew-Oq6" secondAttribute="leading" constant="26" id="eCa-a5-EGZ"/>
+                            <constraint firstItem="sty-VV-Kgw" firstAttribute="leading" secondItem="04G-gh-lGJ" secondAttribute="trailing" constant="8" id="fxl-of-GKF"/>
+                            <constraint firstItem="sty-VV-Kgw" firstAttribute="centerY" secondItem="bnV-ws-q6Q" secondAttribute="centerY" id="gZl-IA-wCs"/>
                             <constraint firstItem="bnV-ws-q6Q" firstAttribute="top" secondItem="HVl-Ew-Oq6" secondAttribute="top" constant="60" id="gf2-ne-Gtx"/>
                             <constraint firstItem="Bsv-e0-5DM" firstAttribute="top" secondItem="bnV-ws-q6Q" secondAttribute="bottom" constant="18" id="rHb-0i-qjZ"/>
                         </constraints>
@@ -403,6 +410,7 @@
                         <outlet property="Backbtn" destination="nAQ-PX-kHW" id="MzK-40-R2S"/>
                         <outlet property="Fav_moviesCollectionview" destination="TKx-u9-vGd" id="keJ-Zt-5q1"/>
                         <outlet property="Star_collectionview" destination="Bsv-e0-5DM" id="jtV-tX-sSB"/>
+                        <outlet property="collectionLayout" destination="SIo-MS-Ux5" id="KrH-nP-1CA"/>
                         <outlet property="searchtxt" destination="04G-gh-lGJ" id="5UT-yY-ZHN"/>
                     </connections>
                 </viewController>

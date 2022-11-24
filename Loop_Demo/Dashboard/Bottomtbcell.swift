@@ -9,6 +9,8 @@ import UIKit
 
 protocol BottomtbCellDelegate {
     func ExpandMoviedetails(Moviedetails : Moives)
+    func Addtobookmarklist(Moviedetails : Moives!)
+    func RemoveFromBookmarklist(Moviedetails : Moives!)
 }
 
 class Bottomtbcell: UITableViewCell {
@@ -43,9 +45,11 @@ class Bottomtbcell: UITableViewCell {
        if self.Bookmarkimgview.isHighlighted == true
         {
            Bookmarkimgview.isHighlighted = false
+           self.Observer?.RemoveFromBookmarklist(Moviedetails: self.Moviedetails)
        } else
         {
            Bookmarkimgview.isHighlighted = true
+           self.Observer?.Addtobookmarklist(Moviedetails: self.Moviedetails)
         }
     }
     

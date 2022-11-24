@@ -21,6 +21,7 @@ class HomeVC: UIViewController, TopviewDelegate {
     var Staffpicks_Movieslist = [Moives]()
     public var bookmark_favMovielist = [Moives]()
     
+    var appdelegate = AppDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,9 @@ class HomeVC: UIViewController, TopviewDelegate {
             self.Progessview.isHidden = true
             self.Setuptableviews()
         }
+        if var MoivesData = self.getbookmarklist() {
+            self.bookmark_favMovielist = MoivesData
+        }
     }
 
     func Setuptableviews()  {
@@ -45,7 +49,7 @@ class HomeVC: UIViewController, TopviewDelegate {
         self.Hometableview.register(UINib(nibName: "ToptbCell", bundle: nil), forCellReuseIdentifier: "ToptbCell")
         self.Hometableview.register(UINib(nibName: "Bottomtbcell", bundle: nil), forCellReuseIdentifier: "Bottomtbcell")
         
-      
+        self.Hometableview.register(UINib(nibName: "Middletbcell", bundle: nil), forCellReuseIdentifier: "Middletbcell")
     }
     
       func loadStaffpicks_movieslist() {
@@ -65,23 +69,27 @@ class HomeVC: UIViewController, TopviewDelegate {
     func Expend_favmovielist() {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let VC = storyBoard.instantiateViewController(withIdentifier: "Fav_MoviesVC") as! Fav_MoviesVC
-
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
+    func getbookmarklist() -> [Moives]? {
+        guard let MoviesData = UserDefaults.standard.data(forKey: "SavedMoives") else { return nil }
+        let MoviesArray = try! JSONDecoder().decode([Moives].self, from: MoviesData)
+        return MoviesArray
+    }
     
 }
 
 extension  HomeVC : UITableViewDelegate , UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0
+        if section == 2
         {
-            return 1
-        } else{
             return self.Staffpicks_Movieslist.count
+        } else{
+           return 1
         }
     }
     
@@ -92,29 +100,53 @@ extension  HomeVC : UITableViewDelegate , UITableViewDataSource {
             cell.observer = self
             cell.loadFav_movieslist()
             return cell
-        } else {
+        }
+        if indexPath.section == 1
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Middletbcell", for: indexPath) as! Middletbcell
+            return cell
+        }
+        else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Bottomtbcell", for: indexPath) as! Bottomtbcell
             cell.Observer = self
             cell.Moviedetails = self.Staffpicks_Movieslist[indexPath.row]
+            if self.bookmark_favMovielist.filter({
+                $0.title == self.Staffpicks_Movieslist[indexPath.row].title
+            }).count > 0
+            {
+                cell.Bookmarkimgview.isHighlighted = true
+            }
+            else
+            {
+                cell.Bookmarkimgview.isHighlighted = false
+            }
             return cell
         }
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 1
-        {
-
-            let title = "OUR STAFF PICKS"
-            return title
-        }
-        else
-        {
-            return nil
-        }
-
-    }
+//
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section == 1
+//        {
+//            let title = "OUR STAFF PICKS"
+//            let range = (title as NSString).range(of: title)
+//
+//            let mutableAttributedString = NSMutableAttributedString.init(string: title)
+//            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: range)
+//
+//            let textField = UITextField()
+//            textField.attributedText = mutableAttributedString
+//
+//            return textField.text
+//        }
+//        else
+//        {
+//            return nil
+//        }
+//
+//    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 { return 453 } else { return 140}
+        if indexPath.section == 0 { return 453 }
+        else if indexPath.section == 1   { return 38 } else { return 140}
     }
     
     
@@ -122,6 +154,48 @@ extension  HomeVC : UITableViewDelegate , UITableViewDataSource {
 
 extension HomeVC : BottomtbCellDelegate {
     
+    
+    func RemoveFromBookmarklist(Moviedetails: Moives!) {
+        
+        if var MoivesData = self.getbookmarklist() {
+            MoivesData = MoivesData.filter({
+                $0.title != Moviedetails.title
+            })
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(MoivesData){
+                     UserDefaults.standard.set(encoded, forKey: "SavedMoives")
+            }
+        }
+        if var MoivesData = self.getbookmarklist() {
+            self.bookmark_favMovielist = MoivesData
+        }
+    }
+    
+    
+    func Addtobookmarklist(Moviedetails: Moives!) {
+        
+        if var MoivesData = self.getbookmarklist() {
+            MoivesData.append(Moviedetails)
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(MoivesData){
+                     UserDefaults.standard.set(encoded, forKey: "SavedMoives")
+            }
+        }
+        else
+        {
+            var MoivesData = [Moives]()
+            MoivesData.append(Moviedetails)
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(MoivesData){
+                     UserDefaults.standard.set(encoded, forKey: "SavedMoives")
+            }
+        }
+        if var MoivesData = self.getbookmarklist() {
+            self.bookmark_favMovielist = MoivesData
+        }
+    }
+    
+   
     func ExpandMoviedetails(Moviedetails: Moives) {
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
@@ -131,6 +205,7 @@ extension HomeVC : BottomtbCellDelegate {
         self.navigationController?.present(VC, animated: true)
      
     }
+    
     
     
     

@@ -7,6 +7,13 @@
 
 import UIKit
 
+
+protocol Fav_collectioncellDelegate {
+  //  func ExpandMoviedetails(Moviedetails : Moives)
+    func Addtobookmarklist(Moviedetails : Moives!)
+    func RemoveFromBookmarklist(Moviedetails : Moives!)
+}
+
 class Fav_collectioncell: UICollectionViewCell {
 
     @IBOutlet weak var Bookmarkimgview: UIImageView!
@@ -14,6 +21,7 @@ class Fav_collectioncell: UICollectionViewCell {
     @IBOutlet weak var Movietitlelbl: UILabel!
     @IBOutlet weak var Moiveimgview: UIImageView!
     @IBOutlet weak var Yearlbl: UILabel!
+    var Observer : Fav_collectioncellDelegate?
     
     var Moviedetails : Moives!
     {
@@ -35,9 +43,11 @@ class Fav_collectioncell: UICollectionViewCell {
        if self.Bookmarkimgview.isHighlighted == true
         {
            Bookmarkimgview.isHighlighted = false
+           self.Observer?.RemoveFromBookmarklist(Moviedetails: self.Moviedetails)
        } else
         {
            Bookmarkimgview.isHighlighted = true
+           self.Observer?.Addtobookmarklist(Moviedetails: self.Moviedetails)
         }
     }
     
