@@ -15,6 +15,7 @@ class Fav_MoviesVC: UIViewController {
     var Fav_Movieslist = [Moives]()
     var tempFilterlist = [Moives]()
     var MAxstar = 5
+    var Filterstar = 0
     public var bookmark_favMovielist = [Moives]()
     @IBOutlet weak var searchtxt: UITextField!
     
@@ -95,11 +96,15 @@ class Fav_MoviesVC: UIViewController {
         self.Fav_moviesCollectionview.reloadData()
         self.Fav_moviesCollectionview?.scrollToItem(at: NSIndexPath(item: 0, section: 0) as IndexPath,
                                                     at: .top,animated: true)
-        self.Star_collectionview.reloadData()
+   
+        self.Star_collectionview.selectItem(at: nil, animated: true, scrollPosition: .top)
+        self.Star_collectionview?.scrollToItem(at: NSIndexPath(item: 0, section: 0) as IndexPath,
+                                                       at: .top,animated: true)
     }
     
     func FilterMovieslistbyRate(count : Int)  {
         
+        self.Filterstar = count
         if count > 0
         {
             self.tempFilterlist = self.Fav_Movieslist.filter({
@@ -161,8 +166,8 @@ extension Fav_MoviesVC : UICollectionViewDelegate , UICollectionViewDataSource {
             Cell.Thirdstarimg.isHighlighted = true
             Cell.Fourthstarimg.isHighlighted = true
             Cell.Fifthstarimg.isHighlighted = true
-            
             self.FilterMovieslistbyRate(count: self.MAxstar - indexPath.row)
+        
         } else {
             
         }
@@ -171,12 +176,12 @@ extension Fav_MoviesVC : UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == self.Star_collectionview
         {
-            let Cell = collectionView.cellForItem(at: indexPath) as! starCollectionViewCell
-            Cell.Firststar.isHighlighted = false
-            Cell.Secondstarimg.isHighlighted = false
-            Cell.Thirdstarimg.isHighlighted = false
-            Cell.Fourthstarimg.isHighlighted = false
-            Cell.Fifthstarimg.isHighlighted = false
+            let Cell = collectionView.cellForItem(at: indexPath) as? starCollectionViewCell
+            Cell?.Firststar.isHighlighted = false
+            Cell?.Secondstarimg.isHighlighted = false
+            Cell?.Thirdstarimg.isHighlighted = false
+            Cell?.Fourthstarimg.isHighlighted = false
+            Cell?.Fifthstarimg.isHighlighted = false
         } else {}
     }
     
@@ -232,13 +237,29 @@ extension Fav_MoviesVC : UITextFieldDelegate, Fav_collectioncellDelegate
         
         if textField.text != ""
        {
-            self.tempFilterlist = self.Fav_Movieslist.filter({
-                $0.title!.lowercased().hasPrefix(textField.text!.lowercased())
-           })
+            
+            if Filterstar > 0
+            {
+                self.tempFilterlist = self.Fav_Movieslist.filter({
+                    $0.title!.lowercased().hasPrefix(textField.text!.lowercased()) && $0.rating?.rounded(.awayFromZero) == Double(Filterstar)
+                    })
+            } else {
+                self.tempFilterlist = self.Fav_Movieslist.filter({
+                    $0.title!.lowercased().hasPrefix(textField.text!.lowercased())
+               })
+                
+            }
        }
        else
        {
-           self.tempFilterlist = self.Fav_Movieslist
+           if Filterstar > 0
+           {
+               self.tempFilterlist = self.Fav_Movieslist.filter({
+                       $0.rating?.rounded(.awayFromZero) == Double(Filterstar)
+                   })
+           } else {
+               self.tempFilterlist = self.Fav_Movieslist
+           }
        }
        self.Fav_moviesCollectionview.reloadData()
           

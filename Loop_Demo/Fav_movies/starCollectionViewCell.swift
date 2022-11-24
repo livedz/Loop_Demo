@@ -27,8 +27,6 @@ class starCollectionViewCell: UICollectionViewCell {
     
   
     func  UpdateStarStackview(count : Int)  {
-        
-     
         switch count {
         case 5:
             self.Firststarwidth.constant = 14.0
@@ -44,7 +42,7 @@ class starCollectionViewCell: UICollectionViewCell {
             self.Thirdstarwidth.constant = 0
             self.Fourthdstarwidth.constant = 14.0
             self.Fifthstarwidth.constant = 14.0
-            self.stackviewWidthcontraint.constant = 78 - 14.0
+            self.stackviewWidthcontraint.constant = 78 - 18.0
             return
         case 3:
             self.Firststarwidth.constant = 0
@@ -52,7 +50,7 @@ class starCollectionViewCell: UICollectionViewCell {
             self.Thirdstarwidth.constant = 14.0
             self.Fourthdstarwidth.constant =  14.0
             self.Fifthstarwidth.constant = 0
-            self.stackviewWidthcontraint.constant = 78 - 20
+            self.stackviewWidthcontraint.constant = 78 - 22
             return
         case 2:
             self.Firststarwidth.constant = 0
@@ -60,7 +58,7 @@ class starCollectionViewCell: UICollectionViewCell {
             self.Thirdstarwidth.constant = 0
             self.Fourthdstarwidth.constant = 14.0
             self.Fifthstarwidth.constant = 0
-            self.stackviewWidthcontraint.constant = 78 - 32
+            self.stackviewWidthcontraint.constant = 45
             return
         default:
             self.Firststarwidth.constant = 0
@@ -68,7 +66,7 @@ class starCollectionViewCell: UICollectionViewCell {
             self.Thirdstarwidth.constant = 14.0
             self.Fourthdstarwidth.constant = 0
             self.Fifthstarwidth.constant = 0
-            self.stackviewWidthcontraint.constant = 78 - 35
+            self.stackviewWidthcontraint.constant = 42
             return
         }
     }
